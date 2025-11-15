@@ -4,6 +4,7 @@ import { Lato, Roboto_Slab } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import { ThemeProvider } from "@/components/ui/theme-provider"
+import { Toaster } from "sonner"
 
 const lato = Lato({
   subsets: ["latin"],
@@ -76,6 +77,7 @@ export default function RootLayout({
         >
           {children}
           <Analytics />
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>

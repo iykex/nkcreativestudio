@@ -1,43 +1,80 @@
 "use client"
 
 import type React from "react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Navigation } from "@/components/navigation"
+import { toast } from "sonner"
 import { Footer } from "@/components/footer"
-import { Phone, Mail } from "lucide-react"
+import { Phone, Mail, User, MapPin, Calendar, MessageSquare } from "lucide-react"
+import { Spinner } from "@/components/ui/spinner"
 
 export default function ContactPage() {
+  const [loading, setLoading] = useState(false)
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     location: "",
+    phone: "",
     date: "",
     details: "",
   })
+
+  useEffect(() => {
+    const today = new Date().toISOString().split("T")[0]
+    setFormData((prev) => ({ ...prev, date: today }))
+  }, [])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    const subject = "Request a quote for work"
-    const body = `
-      Name: ${formData.name}
-      Email: ${formData.email}
-      Location: ${formData.location}
-      Date: ${formData.date}
-      Details: ${formData.details}
-    `
-    window.location.href = `mailto:kp.adusah@gmail.com?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(body)}`
+    const { name, email, phone, location, date, details } = formData
+    if (!name || !email || !phone || !location || !date || !details) {
+      toast.error("All fields are required.")
+      return
+    }
+    setLoading(true)
+    try {
+      const response = await fetch('/api/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await response.json();
+      if (response.ok) {
+        toast.success('Message sent successfully!');
+        setFormData({
+          name: "",
+          email: "",
+          location: "",
+          phone: "",
+          date: "",
+          details: "",
+        });
+      } else {
+        toast.error(`Error: ${data.error.message || JSON.stringify(data.error)}`);
+      }
+    } catch (error) {
+      console.error("Error sending message:", error);
+      toast.error("An unexpected error occurred.");
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
     <div className="relative min-h-screen flex flex-col bg-background text-foreground">
+      {loading && (
+        <div className="absolute inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center z-50">
+          <Spinner className="w-10 h-10" />
+        </div>
+      )}
       {/* Transparent Navbar Overlay */}
       <div className="absolute top-0 left-0 right-0 z-50">
         <Navigation />
@@ -79,50 +116,82 @@ export default function ContactPage() {
             className="space-y-6 mb-20"
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <input
-                type="text"
-                name="name"
-                placeholder="Your Name"
-                value={formData.name}
-                onChange={handleChange}
-                className="w-full px-6 py-4 bg-background/30 backdrop-blur-md rounded-xl border-1 border-gray-300 focus:outline-none focus:ring-2 focus:ring-brand-accent/70 transition-all"
-              />
-              <input
-                type="email"
-                name="email"
-                placeholder="Your Email"
-                value={formData.email}
-                onChange={handleChange}
-                className="w-full px-6 py-4 bg-background/30 backdrop-blur-md rounded-xl border-1 border-gray-300 focus:outline-none focus:ring-2 focus:ring-brand-accent/70 transition-all"
-              />
+              <div className="relative">
+                <User className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground z-10" />
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Full Name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  className="w-full pl-14 pr-6 py-4 bg-background/30 backdrop-blur-md rounded-xl border-1 border-gray-300 focus:outline-none focus:ring-2 focus:ring-brand-accent/70 transition-all"
+                />
+              </div>
+              <div className="relative">
+                <Mail className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground z-10" />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className="w-full pl-14 pr-6 py-4 bg-background/30 backdrop-blur-md rounded-xl border-1 border-gray-300 focus:outline-none focus:ring-2 focus:ring-brand-accent/70 transition-all"
+                />
+              </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <input
-                type="text"
-                name="location"
-                placeholder="Your Location"
-                value={formData.location}
-                onChange={handleChange}
-                className="w-full px-6 py-4 bg-background/30 backdrop-blur-md rounded-xl border-1 border-gray-300 focus:outline-none focus:ring-2 focus:ring-brand-accent/70 transition-all"
-              />
-              <input
-                type="date"
-                name="date"
-                value={formData.date}
-                onChange={handleChange}
-                className="w-full px-6 py-4 bg-background/30 backdrop-blur-md rounded-xl border-1 border-gray-300 text-muted-foreground focus:outline-none focus:ring-2 focus:ring-brand-accent/70 transition-all"
-              />
+              <div className="relative">
+                <Phone className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground z-10" />
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder="Phone (+1 555-555-5555)"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  required
+                  className="w-full pl-14 pr-6 py-4 bg-background/30 backdrop-blur-md rounded-xl border-1 border-gray-300 focus:outline-none focus:ring-2 focus:ring-brand-accent/70 transition-all"
+                />
+              </div>
+              <div className="relative">
+                <MapPin className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground z-10" />
+                <input
+                  type="text"
+                  name="location"
+                  placeholder="Location"
+                  value={formData.location}
+                  onChange={handleChange}
+                  required
+                  className="w-full pl-14 pr-6 py-4 bg-background/30 backdrop-blur-md rounded-xl border-1 border-gray-300 focus:outline-none focus:ring-2 focus:ring-brand-accent/70 transition-all"
+                />
+              </div>
+              <div className="relative">
+                <Calendar className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground z-10" />
+                <input
+                  type="date"
+                  name="date"
+                  value={formData.date}
+                  onChange={handleChange}
+                  required
+                  className="w-full pl-14 pr-6 py-4 bg-background/30 backdrop-blur-md rounded-xl border-1 border-gray-300 text-muted-foreground focus:outline-none focus:ring-2 focus:ring-brand-accent/70 transition-all"
+                />
+              </div>
             </div>
 
-            <textarea
-              name="details"
-              placeholder="Project Details"
-              value={formData.details}
-              onChange={handleChange}
-              rows={6}
-              className="w-full px-6 py-4 bg-background/30 backdrop-blur-md rounded-xl border-1 border-gray-300 focus:outline-none focus:ring-2 focus:ring-brand-accent/70 transition-all resize-none"
-            />
+            <div className="relative">
+              <MessageSquare className="absolute left-6 top-6 -translate-y-1/2 w-5 h-5 text-muted-foreground z-10" />
+              <textarea
+                name="details"
+                placeholder="Message Details"
+                value={formData.details}
+                onChange={handleChange}
+                rows={6}
+                required
+                className="w-full pl-14 pr-6 py-4 bg-background/30 backdrop-blur-md rounded-xl border-1 border-gray-300 focus:outline-none focus:ring-2 focus:ring-brand-accent/70 transition-all resize-none"
+              />
+            </div>
 
             <button
               type="submit"
