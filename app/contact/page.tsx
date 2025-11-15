@@ -217,14 +217,14 @@ export default function ContactPage() {
                 content: (
                   <>
                     +1 778 903 8871
-                    <br />+233 20 832 9357
+                    {/* <br />+233 20 832 9357 */}
                   </>
                 ),
               },
               {
                 title: "Email Address",
                 icon: <Mail size={24} className="text-white" />,
-                content: <>kp.adusah@gmail.com</>,
+                content: <>hello@nkcreativestudio.net</>,
               },
             ].map((item, idx) => (
               <motion.div

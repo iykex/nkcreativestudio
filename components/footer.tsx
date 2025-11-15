@@ -144,16 +144,16 @@ export function Footer() {
                       +1 778 903 8871
                     </span>
                   </div>
-                  <div className="flex items-center gap-3">
+                  {/* <div className="flex items-center gap-3">
                     <Phone size={16} className="text-muted-foreground" />
                     <span className="text-muted-foreground">
                     +233 20 832 9357
                     </span>
-                  </div>
+                  </div> */}
                   <div className="flex items-center gap-3">
                     <Mail size={16} className="text-muted-foreground" />
                     <span className="text-muted-foreground">
-                      kp.adusah@gmail.com
+                      hello@nkcreativestudio.net
                     </span>
                   </div>
                   <div className="flex items-start gap-3">
