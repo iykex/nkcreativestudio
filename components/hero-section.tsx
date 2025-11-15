@@ -11,7 +11,7 @@ export function HeroSection() {
       {/* Static background */}
       <div className="absolute inset-0 bg-gradient-to-br from-brand-primary via-brand-secondary to-brand-primary">
         <Image
-          src="/ap_creative_studio_logo-hero.png"
+          src="/nk_creative_logo-hero.png"
           alt="logo background"
           fill
           quality={100}
@@ -23,18 +23,18 @@ export function HeroSection() {
       <div className="absolute inset-0 overflow-hidden">
         {/* Fixed decorative elements to avoid hydration mismatch */}
         <motion.div
-          className="absolute top-10 right-5 w-30 h-30 border-transparent rounded-full rotate-12 md:w-62 md:h-62 md:top-20 md:right-10"
+          className="absolute top-10 right-5 w-34 h-24 border-transparent rounded-full rotate-12 md:w-42 md:h-42 md:top-20 md:right-10"
           animate={{ y: [-20, 20, -20] }}
           transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
         >
-          <img src="https://cdn.jsdelivr.net/gh/iykex/ap-creative@main/images/portfolio/logos/lg_03.jpg" alt="logo" className="w-full h-full object-cover rounded-full opacity-90" />
+          <img src="https://cdn.jsdelivr.net/gh/iykex/ap-creative@main/images/logos/1REAL%20MUSIC.jpg" alt="logo" className="w-full h-full object-cover rounded-full opacity-90" />
         </motion.div>
         <motion.div
-          className="absolute bottom-10 left-5 w-40 h-40 border-transparent rounded-full -rotate-12 md:w-76 md:h-76 md:bottom-20 md:left-10"
+          className="absolute bottom-10 left-5 w-30 h-30 border-transparent rounded-full -rotate-12 md:w-42 md:h-42 md:bottom-20 md:left-10"
           animate={{ y: [20, -20, 20] }}
           transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
         >
-          <img src="https://cdn.jsdelivr.net/gh/iykex/ap-creative@main/images/portfolio/logos/lg_06.jpg" alt="logo" className="w-full h-full object-cover rounded-full opacity-90" />
+          <img src="https://cdn.jsdelivr.net/gh/iykex/ap-creative@main/images/logos/LuxeTrendsgh%20logo%202.jpg" alt="logo" className="w-full h-full object-cover rounded-full opacity-90" />
         </motion.div>
         
         {/* Static floating elements */}

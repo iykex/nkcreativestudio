@@ -66,7 +66,7 @@ export function ServicesSection() {
               viewport={{ once: true }}
               className="group"
             >
-              <Card className="h-full bg-card border border-transparent rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 dark:border-gray-800">
+              <Card className="h-full bg-card border border-transparent rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300">
                 <CardContent className="p-0">
                   {/* Image */}
                   <div className="relative aspect-[4/3] overflow-hidden">

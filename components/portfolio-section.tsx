@@ -74,7 +74,7 @@ export function PortfolioSection() {
                     viewport={{ once: true }}
                     className="group"
                   >
-                    <Card className="h-full bg-card border border-brand-accent/20 rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 dark:border-gray-800">
+                    <Card className="h-full bg-card border border-transparent rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300">
                       <CardContent className="p-0">
                         {/* Image */}
                         <div className="relative aspect-[4/3] overflow-hidden">
@@ -138,7 +138,7 @@ export function PortfolioSection() {
                             </p>
                             <Link
                               href={`/portfolio/${item.category}`}
-                              className="md:hidden bg-background/50 backdrop-blur-sm rounded-full border-1 border-brand-accent/20 p-2 text-[#ed1b24]">
+                              className="md:hidden bg-background/50 backdrop-blur-sm rounded-full border border-brand-accent/20 p-2 text-[#ed1b24]">
                                 <svg
                                   width="16"
                                   height="16"
