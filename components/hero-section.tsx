@@ -27,7 +27,7 @@ export function HeroSection() {
           animate={{ y: [-20, 20, -20] }}
           transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
         >
-          <img src="https://cdn.jsdelivr.net/gh/iykex/ap-creative@main/images/logos/1REAL%20MUSIC.jpg" alt="logo" className="w-full h-full object-cover rounded-full opacity-90" />
+          <img src="https://cdn.jsdelivr.net/gh/iykex/ap-creative@main/images/logos/LOGO%20TOOFAN%202.jpg" alt="logo" className="w-full h-full object-cover rounded-full opacity-90" />
         </motion.div>
         <motion.div
           className="absolute bottom-10 left-5 w-30 h-30 border-transparent rounded-full -rotate-12 md:w-42 md:h-42 md:bottom-20 md:left-10"
