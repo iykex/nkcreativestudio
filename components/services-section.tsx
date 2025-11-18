@@ -10,21 +10,21 @@ const services = [
     title: "Graphic Design",
     description: "Stunning visual designs that capture attention and communicate your message effectively.",
     icon: "🎨",
-    image: "https://cdn.jsdelivr.net/gh/iykex/ap-creative@main/images/portfolio/flyers/fl_03.jpg",
+    image: "https://cdn.jsdelivr.net/gh/iykex/nkcreativestudio@main/images/portfolio/flyers/fl_03.jpg",
     features: ["Logo Design", "Marketing Materials", "Digital Graphics", "Print Design"]
   },
   {
     title: "Branding",
     description: "Complete brand identity solutions that make your business memorable and distinctive.",
     icon: "🏷️",
-    image: "https://cdn.jsdelivr.net/gh/iykex/ap-creative@main/images/portfolio/logos/lg_02.jpg",
+    image: "https://cdn.jsdelivr.net/gh/iykex/nkcreativestudio@main/images/portfolio/logos/lg_02.jpg",
     features: ["Brand Strategy", "Logo Design", "Brand Guidelines", "Visual Identity"]
   },
   {
     title: "Packaging Design",
     description: "Innovative packaging solutions that protect your products and enhance shelf appeal.",
     icon: "📦",
-    image: "https://cdn.jsdelivr.net/gh/iykex/ap-creative@main/images/portfolio/brochure/brc_02.jpg",
+    image: "https://cdn.jsdelivr.net/gh/iykex/nkcreativestudio@main/images/portfolio/brochure/brc_02.jpg",
     features: ["Product Packaging", "Label Design", "Box Design", "Sustainable Solutions"]
   },
 ]
